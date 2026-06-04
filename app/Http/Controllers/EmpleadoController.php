@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleado;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -11,7 +13,9 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+         $empleados = Empleado::with('departamento')->get();
+
+        return view('empleados.index', compact('empleados'));
     }
 
     /**
@@ -19,7 +23,9 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+         $departamentos = Departamento::all();
+
+        return view('empleados.create', compact('departamentos'));
     }
 
     /**
@@ -27,7 +33,19 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         Empleado::create([
+            'user_id' => 1,
+            'departamento_id' => $request->departamento_id,
+            'dni' => $request->dni,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'cargo' => $request->cargo,
+            'fecha_ingreso' => $request->fecha_ingreso,
+            'activo' => 1
+        ]);
+            return redirect('/empleados');
     }
 
     /**
@@ -43,7 +61,13 @@ class EmpleadoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         $empleado = Empleado::findOrFail($id);
+        $departamentos = Departamento::all();
+
+        return view(
+            'empleados.edit',
+            compact('empleado', 'departamentos')
+        );
     }
 
     /**
@@ -51,7 +75,20 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $empleado = Empleado::findOrFail($id);
+
+         $empleado->update([
+            'departamento_id' => $request->departamento_id,
+            'dni' => $request->dni,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'cargo' => $request->cargo,
+            'fecha_ingreso' => $request->fecha_ingreso
+        ]);
+
+        return redirect('/empleados');
     }
 
     /**
@@ -59,6 +96,8 @@ class EmpleadoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         Empleado::findOrFail($id)->delete();
+
+        return redirect('/empleados');
     }
 }
