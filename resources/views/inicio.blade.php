@@ -1,33 +1,64 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('contenido')
+@section('title', 'Panel de Control - SIENDEP')
 
-<h1>Sistema SIENDEP</h1>
+@section('content')
 
-<p>
-Sistema Integral de Evaluación de Desempeño.
-</p>
+    <div>
+        <h1 class="text-white font-bold text-2xl">Inicio - Panel de control</h1>
+        <p class="text-zinc-300 text-sm mt-2">Bienvenido, {{ auth()->user()->name ?? 'Administrador' }}. Desde aquí puedes gestionar la estructura organizativa y el personal.</p>
+    </div>
 
-<h2>Módulos Disponibles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
 
-<ul>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Departamentos</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Administra las áreas de la empresa.</p>
+            <a href="/departamentos" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Departamentos</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Empleados</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Registra, modifica y administra el personal.</p>
+            <a href="/empleados" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Empleados</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Criterios</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Define los parámetros de evaluación.</p>
+            <a href="/criterios" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Criterios</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Períodos</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Configura los ciclos de evaluación.</p>
+            <a href="/periodos" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Períodos de Evaluación</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Evaluaciones</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Gestión principal de notas y desempeño.</p>
+            <a href="/evaluaciones" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Evaluaciones</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Detalles</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Revisa a fondo cada evaluación.</p>
+            <a href="/detalle-evaluaciones" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Detalle Evaluaciones</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Autoevaluaciones</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Formularios completados por el personal.</p>
+            <a href="/autoevaluaciones" class="tarjetas-links">Gestionar</a>
+        </div>
 
-<li>Autoevaluaciones</li>
+        <div class="tarjetas-inicio">
+            <h3 class="text-xl font-bold text-white">Métricas</h3>
+            <p class="text-zinc-300 mt-2 text-center text-sm">Estadísticas y resultados globales.</p>
+            <a href="/metricas" class="tarjetas-links">Visualizar</a>
+        </div>
 
-<li>Métricas</li>
-
-</ul>
+    </div>
 
 @endsection
