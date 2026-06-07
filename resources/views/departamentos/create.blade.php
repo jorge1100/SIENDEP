@@ -1,3 +1,7 @@
+@extends('layout')
+
+@section('contenido')
+
 <h1>Nuevo Departamento</h1>
 
 <form method="POST" action="/departamentos">
@@ -7,14 +11,19 @@
     <label>Nombre</label>
     <br>
 
-    <input type="text" name="nombre">
+    <input
+        type="text"
+        name="nombre"
+    >
 
     <br><br>
 
     <label>Descripción</label>
     <br>
 
-    <textarea name="descripcion"></textarea>
+    <textarea
+        name="descripcion"
+    ></textarea>
 
     <br><br>
 
@@ -23,3 +32,5 @@
     </button>
 
 </form>
+
+@endsection

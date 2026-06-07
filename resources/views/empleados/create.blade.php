@@ -1,3 +1,7 @@
+@extends('layout')
+
+@section('contenido')
+
 <h1>Nuevo Empleado</h1>
 
 <form method="POST" action="/empleados">
@@ -37,3 +41,5 @@ Guardar
 </button>
 
 </form>
+
+@endsection

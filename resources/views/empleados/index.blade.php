@@ -1,3 +1,7 @@
+@extends('layout')
+
+@section('contenido')
+
 <h1>Empleados</h1>
 
 <a href="/empleados/create">
@@ -57,3 +61,5 @@ Eliminar
 @endforeach
 
 </table>
+
+@endsection
