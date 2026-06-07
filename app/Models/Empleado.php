@@ -23,4 +23,21 @@ class Empleado extends Model
     {
         return $this->belongsTo(Departamento::class);
     }
+
+    public function evaluaciones()
+    {
+        return $this->hasMany(Evaluacion::class);
+    }
+
+    public function autoevaluaciones()
+    {
+            return $this->hasMany(
+            Autoevaluacion::class
+        );
+    }
+
+    public function metricas()
+    {
+        return $this->hasMany(Metrica::class);
+    }
 }

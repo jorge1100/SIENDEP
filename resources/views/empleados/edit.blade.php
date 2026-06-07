@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('contenido')
+
 <h1>Editar Empleado</h1>
 
 <form method="POST" action="/empleados/{{ $empleado->id }}">
@@ -41,3 +45,5 @@ Actualizar
 </button>
 
 </form>
+
+@endsection
