@@ -81,8 +81,8 @@ class AutoevaluacionController extends Controller
 
     public function destroy($id)
     {
-        Autoevaluacion::findOrFail($id)->delete();
-
+        $autoevaluacion = Autoevaluacion::findOrFail($id);
+        $autoevaluacion->delete();
         return redirect('/autoevaluaciones');
     }
 }

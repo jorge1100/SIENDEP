@@ -11,4 +11,11 @@ class Criterio extends Model
         'descripcion',
         'ponderacion'
     ];
+
+    public function detalles()
+    {
+        return $this->hasMany(
+            DetalleEvaluacion::class
+        );
+    }
 }

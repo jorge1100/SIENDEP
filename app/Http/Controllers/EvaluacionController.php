@@ -80,7 +80,9 @@ class EvaluacionController extends Controller
 
     public function destroy($id)
     {
-        Evaluacion::findOrFail($id)->delete();
+        $evaluacion = Evaluacion::findOrFail($id);
+
+        $evaluacion->delete();
 
         return redirect('/evaluaciones');
     }

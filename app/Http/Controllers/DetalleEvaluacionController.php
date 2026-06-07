@@ -67,7 +67,7 @@ class DetalleEvaluacionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $detalle = DetalleEvaluacion::findOrFail($id);
+         $detalle = DetalleEvaluacion::findOrFail($id);
 
         $detalle->update([
             'evaluacion_id' => $request->evaluacion_id,
@@ -76,13 +76,15 @@ class DetalleEvaluacionController extends Controller
             'comentario' => $request->comentario
         ]);
 
-        return redirect('/detalle-evaluaciones');
+    return redirect('/detalle-evaluaciones');
     }
 
     public function destroy($id)
     {
-        DetalleEvaluacion::findOrFail($id)->delete();
+        $detalle = DetalleEvaluacion::findOrFail($id);
 
-        return redirect('/detalle-evaluaciones');
+    $detalle->delete();
+
+    return redirect('/detalle-evaluaciones');
     }
 }

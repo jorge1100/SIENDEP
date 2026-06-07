@@ -71,8 +71,8 @@ class MetricaController extends Controller
 
     public function destroy($id)
     {
-        Metrica::findOrFail($id)->delete();
-
+        $metrica = Metrica::findOrFail($id);
+        $metrica->delete();
         return redirect('/metricas');
     }
 }
