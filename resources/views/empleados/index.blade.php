@@ -13,13 +13,15 @@ Nuevo Empleado
 <table border="1">
 
 <tr>
-<th>ID</th>
-<th>DNI</th>
-<th>Nombre</th>
-<th>Apellido</th>
-<th>Cargo</th>
-<th>Departamento</th>
-<th>Acciones</th>
+
+    <th>ID</th>
+    <th>DNI</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cargo</th>
+    <th>Departamento</th>
+    <th>Acciones</th>
+
 </tr>
 
 @foreach($empleados as $empleado)
@@ -63,3 +65,4 @@ Eliminar
 </table>
 
 @endsection
+

@@ -1,6 +1,13 @@
+@extends('layout')
+
+@section('contenido')
+
 <h1>Editar Departamento</h1>
 
-<form method="POST" action="/departamentos/{{ $departamento->id }}">
+<form
+    method="POST"
+    action="/departamentos/{{ $departamento->id }}"
+>
 
     @csrf
     @method('PUT')
@@ -30,3 +37,5 @@
     </button>
 
 </form>
+
+@endsection

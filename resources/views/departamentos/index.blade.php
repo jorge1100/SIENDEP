@@ -1,12 +1,16 @@
+@extends('layout')
+
+@section('contenido')
+
 <h1>Departamentos</h1>
 
 <a href="/departamentos/create">
     Nuevo Departamento
 </a>
 
-<hr>
+<br><br>
 
-<table border="1">
+<table>
 
     <tr>
         <th>ID</th>
@@ -31,11 +35,14 @@
                 Editar
             </a>
 
+            |
+
             <form
                 action="/departamentos/{{ $departamento->id }}"
                 method="POST"
                 style="display:inline;"
             >
+
                 @csrf
                 @method('DELETE')
 
@@ -52,3 +59,5 @@
     @endforeach
 
 </table>
+
+@endsection
