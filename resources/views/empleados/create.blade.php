@@ -28,7 +28,7 @@
 
 <option value="{{ $departamento->id }}">
     {{ $departamento->nombre }}
-</option>
+</option>   
 
 @endforeach
 

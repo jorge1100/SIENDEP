@@ -8,95 +8,89 @@ use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
+ FrontIvan
+        $empleados = Empleado::with('departamento')->get();
+
+        return view(
+            'empleados.index',
+            compact('empleados')
+        );
          $empleados = Empleado::with('departamento')->get();
 
         return view('empleados.index', compact('empleados'));
+      main
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-         $departamentos = Departamento::all();
-
-        return view('empleados.create', compact('departamentos'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-         Empleado::create([
-            'user_id' => 1,
-            'departamento_id' => $request->departamento_id,
-            'dni' => $request->dni,
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'telefono' => $request->telefono,
-            'direccion' => $request->direccion,
-            'cargo' => $request->cargo,
-            'fecha_ingreso' => $request->fecha_ingreso,
-            'activo' => 1
-        ]);
-            return redirect('/empleados');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-         $empleado = Empleado::findOrFail($id);
+ FrontIvan
         $departamentos = Departamento::all();
 
         return view(
-            'empleados.edit',
-            compact('empleado', 'departamentos')
+            'empleados.create',
+            compact('departamentos')
         );
+
+         $departamentos = Departamento::all();
+
+        return view('empleados.create', compact('departamentos'));
+ main
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function store(Request $request)
+{
+    Empleado::create([
+        'user_id' => auth()->id(), // Cambia '1' por el usuario logueado si es necesario
+        'departamento_id' => $request->departamento_id,
+        'dni' => $request->dni,
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'telefono' => $request->telefono,
+        'direccion' => $request->direccion,
+        'cargo' => $request->cargo,
+        'fecha_ingreso' => $request->fecha_ingreso,
+        'activo' => 1
+    ]);
+
+    return redirect('/empleados');
+}
+
+   public function edit($id)
+{
+    $empleado = Empleado::findOrFail($id);
+    $departamentos = Departamento::all();
+
+    return view('empleados.edit', compact('empleado', 'departamentos'));
+}
+
+   public function update(Request $request, $id)
+{
+    $empleado = Empleado::findOrFail($id);
+
+    $empleado->update([
+        'departamento_id' => $request->departamento_id,
+        'dni' => $request->dni,
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'telefono' => $request->telefono,
+        'direccion' => $request->direccion,
+        'cargo' => $request->cargo,
+        'fecha_ingreso' => $request->fecha_ingreso
+        // Si necesitas actualizar 'activo', agrégalo aquí
+    ]);
+
+    return redirect('/empleados');
+}
+
+    public function destroy($id)
     {
-         $empleado = Empleado::findOrFail($id);
+ FrontIvan
+        Empleado::findOrFail($id)->delete();
 
-         $empleado->update([
-            'departamento_id' => $request->departamento_id,
-            'dni' => $request->dni,
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'telefono' => $request->telefono,
-            'direccion' => $request->direccion,
-            'cargo' => $request->cargo,
-            'fecha_ingreso' => $request->fecha_ingreso
-        ]);
-
-        return redirect('/empleados');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
          Empleado::findOrFail($id)->delete();
+ main
 
         return redirect('/empleados');
     }

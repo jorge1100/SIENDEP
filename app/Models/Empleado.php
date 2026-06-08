@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
         'departamento_id',
         'dni',
@@ -31,9 +31,7 @@ class Empleado extends Model
 
     public function autoevaluaciones()
     {
-            return $this->hasMany(
-            Autoevaluacion::class
-        );
+        return $this->hasMany(Autoevaluacion::class);
     }
 
     public function metricas()
