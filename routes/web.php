@@ -33,3 +33,18 @@ Route::delete(
     '/departamentos/{id}',
     [DepartamentoController::class, 'destroy']
 );
+
+use App\Http\Controllers\EmpleadoController;
+
+Route::get('/empleados',[EmpleadoController::class,'index']);
+Route::get('/empleados/create',[EmpleadoController::class,'create']);
+Route::post('/empleados',[EmpleadoController::class,'store']);
+
+Route::get('/empleados/{id}/edit',
+    [EmpleadoController::class,'edit']);
+
+Route::put('/empleados/{id}',
+    [EmpleadoController::class,'update']);
+
+Route::delete('/empleados/{id}',
+    [EmpleadoController::class,'destroy']);
