@@ -20,38 +20,3 @@
     @apply mt-6 bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors;
 }
 
-.etiqueta-formulario {
-    @apply block text-sm font-medium text-zinc-300 mb-2;
-}
-
-.input-formulario {
-    @apply w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors;
-}
-
-.btn-nuevo {
-    @apply bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded shadow transition-colors;
-}
-
-.btn-guardar {
-    @apply bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded transition-colors shadow;
-}
-
-.btn-editar {
-    @apply bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm transition-colors;
-}
-
-.btn-borrar {
-    @apply bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm transition-colors;
-}
-
-.tabla-encabezado {
-    @apply p-4 font-semibold;
-}
-
-.tabla-celda {
-    @apply p-4;
-}
-
-.tabla-fila {
-    @apply hover:bg-zinc-700 transition-colors;
-}
