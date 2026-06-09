@@ -1,64 +1,53 @@
 @extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Criterios</h1>
+    <div class="mb-6 flex justify-between items-center max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-white">Criterios</h1>
+        <a href="/criterios/create" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded shadow transition-colors">
+            Nuevo Criterio
+        </a>
+    </div>
 
-<a href="/criterios/create">
-Nuevo Criterio
-</a>
+    <div class="bg-zinc-800 rounded-lg shadow-lg border border-zinc-600 max-w-6xl mx-auto overflow-hidden">
+        <table class="w-full text-left border-collapse text-zinc-200">
+            <thead class="bg-zinc-900 border-b border-zinc-600">
+                <tr>
+                    <th class="p-4 font-semibold">ID</th>
+                    <th class="p-4 font-semibold">Nombre</th>
+                    <th class="p-4 font-semibold">Descripción</th>
+                    <th class="p-4 font-semibold">Ponderación</th>
+                    <th class="p-4 font-semibold text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-700">
+                
+                @foreach($criterios as $criterio)
+                <tr class="hover:bg-zinc-700 transition-colors">
+                    <td class="p-4">{{ $criterio->id }}</td>
+                    <td class="p-4 font-bold text-white">{{ $criterio->nombre }}</td>
+                    <td class="p-4 text-sm">{{ $criterio->descripcion }}</td>
+                    <td class="p-4 font-bold text-blue-400">{{ $criterio->ponderacion }}</td>
+                    <td class="p-4 flex justify-center gap-2">
+                        
+                        <a href="/criterios/{{ $criterio->id }}/edit" class="bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                            Editar
+                        </a>
 
-<hr>
+                        <form action="/criterios/{{ $criterio->id }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Eliminar
+                            </button>
+                        </form>
 
-<table border="1">
+                    </td>
+                </tr>
+                @endforeach
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th>Ponderación</th>
-    <th>Acciones</th>
-</tr>
-
-@foreach($criterios as $criterio)
-
-<tr>
-
-<td>{{ $criterio->id }}</td>
-
-<td>{{ $criterio->nombre }}</td>
-
-<td>{{ $criterio->descripcion }}</td>
-
-<td>{{ $criterio->ponderacion }}</td>
-
-<td>
-
-<a href="/criterios/{{ $criterio->id }}/edit">
-Editar
-</a>
-
-<form
-action="/criterios/{{ $criterio->id }}"
-method="POST"
-style="display:inline;"
->
-
-@csrf
-@method('DELETE')
-
-<button type="submit">
-Eliminar
-</button>
-
-</form>
-
-</td>
-
-</tr>
-
-@endforeach
-
-</table>
+            </tbody>
+        </table>
+    </div>
 
 @endsection

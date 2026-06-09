@@ -1,40 +1,45 @@
 @extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Nuevo Período</h1>
+    <div class="max-w-2xl mx-auto">
+        <div class="mb-6 flex items-center gap-4">
+            <a href="/periodos" class="text-zinc-400 hover:text-white transition-colors">&larr; Volver</a>
+            <h1 class="text-3xl font-bold text-white">Nuevo Período</h1>
+        </div>
 
-<form method="POST" action="/periodos">
+        <div class="bg-zinc-800 p-8 rounded-lg shadow-lg border border-zinc-600">
+            <form method="POST" action="/periodos" class="flex flex-col gap-5">
+                @csrf
 
-@csrf
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Nombre</label>
+                    <input type="text" name="nombre" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
 
-<label>Nombre</label>
-<br>
-<input type="text" name="nombre">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Inicio</label>
+                    <input type="date" name="fecha_inicio" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
 
-<br><br>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Fin</label>
+                    <input type="date" name="fecha_fin" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
 
-<label>Fecha Inicio</label>
-<br>
-<input type="date" name="fecha_inicio">
+                <div class="flex items-center gap-2 mt-2">
+                    <input type="checkbox" name="activo" value="1" class="w-5 h-5 accent-blue-600 bg-zinc-900 border-zinc-600 rounded focus:ring-blue-500">
+                    <label class="text-sm font-medium text-zinc-300">Activo</label>
+                </div>
 
-<br><br>
+                <div class="mt-4 flex justify-end">
+                    <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded transition-colors shadow">
+                        Guardar
+                    </button>
+                </div>
 
-<label>Fecha Fin</label>
-<br>
-<input type="date" name="fecha_fin">
-
-<br><br>
-
-<label>Activo</label>
-<input type="checkbox" name="activo" value="1">
-
-<br><br>
-
-<button type="submit">
-Guardar
-</button>
-
-</form>
+            </form>
+        </div>
+    </div>
 
 @endsection
