@@ -1,63 +1,57 @@
 @extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Períodos de Evaluación</h1>
+    <div class="mb-6 flex justify-between items-center max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-white">Períodos de Evaluación</h1>
+        <a href="/periodos/create" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded shadow transition-colors">
+            Nuevo Período
+        </a>
+    </div>
 
-<a href="/periodos/create">
-Nuevo Período
-</a>
+    <div class="bg-zinc-800 rounded-lg shadow-lg border border-zinc-600 max-w-6xl mx-auto overflow-hidden">
+        <table class="w-full text-left border-collapse text-zinc-200">
+            <thead class="bg-zinc-900 border-b border-zinc-600">
+                <tr>
+                    <th class="p-4 font-semibold">ID</th>
+                    <th class="p-4 font-semibold">Nombre</th>
+                    <th class="p-4 font-semibold">Inicio</th>
+                    <th class="p-4 font-semibold">Fin</th>
+                    <th class="p-4 font-semibold">Activo</th>
+                    <th class="p-4 font-semibold text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-700">
+                
+                @foreach($periodos as $periodo)
+                <tr class="hover:bg-zinc-700 transition-colors">
+                    <td class="p-4">{{ $periodo->id }}</td>
+                    <td class="p-4 font-bold text-white">{{ $periodo->nombre }}</td>
+                    <td class="p-4">{{ $periodo->fecha_inicio }}</td>
+                    <td class="p-4">{{ $periodo->fecha_fin }}</td>
+                    <td class="p-4 font-semibold {{ $periodo->activo ? 'text-green-400' : 'text-red-400' }}">
+                        {{ $periodo->activo ? 'Sí' : 'No' }}
+                    </td>
+                    <td class="p-4 flex justify-center gap-2">
+                        
+                        <a href="/periodos/{{ $periodo->id }}/edit" class="bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                            Editar
+                        </a>
 
-<hr>
+                        <form action="/periodos/{{ $periodo->id }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Eliminar
+                            </button>
+                        </form>
 
-<table border="1">
+                    </td>
+                </tr>
+                @endforeach
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Inicio</th>
-    <th>Fin</th>
-    <th>Activo</th>
-    <th>Acciones</th>
-</tr>
-
-@foreach($periodos as $periodo)
-
-<tr>
-
-<td>{{ $periodo->id }}</td>
-<td>{{ $periodo->nombre }}</td>
-<td>{{ $periodo->fecha_inicio }}</td>
-<td>{{ $periodo->fecha_fin }}</td>
-<td>{{ $periodo->activo ? 'Sí' : 'No' }}</td>
-
-<td>
-
-<a href="/periodos/{{ $periodo->id }}/edit">
-Editar
-</a>
-
-<form
-action="/periodos/{{ $periodo->id }}"
-method="POST"
-style="display:inline;"
->
-
-@csrf
-@method('DELETE')
-
-<button type="submit">
-Eliminar
-</button>
-
-</form>
-
-</td>
-
-</tr>
-
-@endforeach
-
-</table>
+            </tbody>
+        </table>
+    </div>
 
 @endsection
