@@ -9,6 +9,7 @@ use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\DetalleEvaluacionController;
 use App\Http\Controllers\AutoevaluacionController;
 use App\Http\Controllers\MetricaController;
+use App\Http\Controllers\ReporteController;
 
 Route::get('/', function () {
     return view('inicio');
@@ -176,4 +177,19 @@ Route::put('/metricas/{id}',
 
 Route::delete('/metricas/{id}',
     [MetricaController::class,'destroy']);
+
+Route::get(
+    '/reportes/evaluaciones',
+    [ReporteController::class,'evaluaciones']
+);
+
+Route::get(
+    '/reportes/ranking',
+    [ReporteController::class,'ranking']
+);
+
+Route::get(
+    '/reportes/promedio',
+    [ReporteController::class,'promedio']
+);
 
