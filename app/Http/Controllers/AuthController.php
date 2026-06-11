@@ -8,19 +8,16 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function register(Request $request)
+    {
+        User::create([
+            'name' => $request->usuario,
+            'email' => $request->correo,
+            'password' => Hash::make($request->password),
+        ]);
 
-   
-public function register(Request $request)
-{
-    User::create([
-        'name' => $request->usuario,
-        'email' => $request->correo,
-        'password' => Hash::make($request->password),
-    ]);
-
-    return redirect('/')->with('ok', 'Usuario creado');
-}
-
+        return redirect('/')->with('ok', 'Usuario creado correctamente');
+    }
 
     public function login(Request $request)
     {
@@ -28,11 +25,14 @@ public function register(Request $request)
 
         if ($user && Hash::check($request->password, $user->password)) {
 
-            session(['id_usuario' => $user->id]);
+            session([
+                'id_usuario' => $user->id,
+                'nombre_usuario' => $user->name
+            ]);
 
             return redirect('/home');
         }
 
-        return back()->with('error', 'Credenciales incorrectas');
+        return redirect('/?vista=login')->with('error', 'Credenciales incorrectas');
     }
 }

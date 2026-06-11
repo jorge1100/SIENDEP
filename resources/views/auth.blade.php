@@ -8,10 +8,26 @@
     <meta charset="UTF-8">
     <title>Acceso</title>
 
-    <!-- Carga de tu CSS -->
-    <link rel="stylesheet" href="{{ asset('auth.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/auth.css">
 </head>
+
 <body>
+
+
+{{-- ✅ MENSAJE TOAST --}}
+@if(session('error'))
+    <div class="error-toast">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if(session('ok'))
+    <div class="ok-toast">
+        {{ session('ok') }}
+    </div>
+@endif
+
 
 <div class="auth-container">
 
@@ -28,21 +44,15 @@
         </a>
     </div>
 
-    <!-- MENSAJES -->
-    @if(session('error'))
-        <p class="error">{{ session('error') }}</p>
-    @endif
-
-    @if(session('ok'))
-        <p class="ok">{{ session('ok') }}</p>
-    @endif
-
     <!-- LOGIN -->
     @if($vista === 'login')
 
         <div class="auth-card">
+
             <h2>Iniciar sesión</h2>
 
+            <!-- ✅ MENSAJES DENTRO DEL CARD -->
+           
             <form method="POST" action="/login">
                 @csrf
 
@@ -62,30 +72,65 @@
 
                 <button type="submit">Ingresar</button>
             </form>
+
         </div>
 
     @else
 
         <!-- REGISTRO -->
         <div class="auth-card">
+
             <h2>Crear cuenta</h2>
 
-           
-<form method="POST" action="/register">
-    @csrf
+            <!-- ✅ MENSAJES TAMBIÉN AQUÍ -->
+            @if(session('error'))
+                
+<div class="error-box">
+    {{ session('error') }}
+</div>
 
-    <input type="text" name="usuario" placeholder="Ingrese su nombre">
-    <input type="email" name="correo" placeholder="Ingrese un correo electronico">
-    <input type="password" name="password" placeholder="Ingrese una contraseña">
+            @endif
 
-    <button type="submit">Registrarse</button>
-</form>
+            @if(session('ok'))
+                <p class="ok">{{ session('ok') }}</p>
+            @endif
+
+            <form method="POST" action="/register">
+                @csrf
+
+                <input type="text" name="usuario" placeholder="Ingrese su nombre" required>
+                <input type="email" name="correo" placeholder="Ingrese un correo electrónico" required>
+                <input type="password" name="password" placeholder="Ingrese una contraseña" required>
+
+                <button type="submit">Registrarse</button>
+            </form>
 
         </div>
 
     @endif
 
 </div>
+
+<!-- ✅ FOOTER -->
+<footer class="auth-footer">
+    <p>© 2026 SIENDEP — Sistema de Evaluación</p>
+</footer>
+
+<!-- ✅ AUTO OCULTAR MENSAJE -->
+
+<script>
+ 
+setTimeout(() => {
+    const alerta = document.querySelector('.error-toast, .ok-toast');
+    if (alerta) {
+        alerta.style.transition = "0.5s";
+        alerta.style.opacity = "0";
+        alerta.style.transform = "translateY(-20px)";
+    }
+}, 3000);
+
+</script>
+
 
 </body>
 </html>

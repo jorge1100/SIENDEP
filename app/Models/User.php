@@ -11,7 +11,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
     
     protected $table = 'users';
-    protected $primaryKey = 'id_usuario';
 
     protected $fillable = [
         'name',
@@ -21,8 +20,7 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'hash_contrasena'
+        'password',
+        'remember_token'
     ];
-
-    public $timestamps = false;
 }

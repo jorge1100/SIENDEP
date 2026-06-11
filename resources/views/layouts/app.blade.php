@@ -12,6 +12,23 @@
 <body class="bg-zinc-700">
 
 
+
+@if(session()->has('id_usuario'))
+    <div class="absolute top-5 right-5 bg-zinc-800 px-4 py-2 rounded-lg shadow text-white text-right">
+
+        <p class="font-semibold">
+            Hola {{ session('nombre_usuario') }}
+        </p>
+
+        <a href="{{ url('/logout') }}" class="text-red-400 hover:text-red-500 text-sm">
+            Cerrar sesión
+        </a>
+
+    </div>
+@endif
+
+
+
     <header class="bg-zinc-900 px-8 py-4 flex flex-col items-start justify-start">
 
         <a href="/" class="font-bold text-white text-2xl">
@@ -23,8 +40,7 @@
         </p>
 
         <nav class="font-bold text-white mt-4 py-4 flex flex-wrap justify-center items-center gap-6 w-full">
-            <a href="/" class="enlace-menu">Inicio
-            </a>
+           
 
             <a href="/departamentos" class="enlace-menu">
                 Departamentos

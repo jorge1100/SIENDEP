@@ -3,7 +3,6 @@
 @section('title', 'Panel de Control - SIENDEP')
 
 @section('content')
-
     <div>
         <h1 class="text-white font-bold text-2xl">Inicio - Panel de control</h1>
         <p class="text-zinc-300 text-sm mt-2">Bienvenido, {{ auth()->user()->name ?? 'Administrador' }}. Desde aquí puedes gestionar la estructura organizativa y el personal.</p>
