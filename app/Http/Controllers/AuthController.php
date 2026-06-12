@@ -10,7 +10,21 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        User::create([
+       
+    
+$request->validate([
+        
+ 'usuario' => 'required|min:6',
+    'correo' => [
+        'required',
+        'email',
+        'regex:/^[A-Za-z0-9._%+-]+@gmail\.com$/'
+    ],
+    'password' => 'required|min:6',
+]);
+
+    
+    User::create([
             'name' => $request->usuario,
             'email' => $request->correo,
             'password' => Hash::make($request->password),
@@ -21,6 +35,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
+    
+  // ✅ VALIDACIÓN
+    $request->validate([
+        'usuario' => 'required',
+        'password' => 'required|min:6',
+    ]);
+
         $user = User::where('name', $request->usuario)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {

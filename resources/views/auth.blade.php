@@ -85,8 +85,8 @@
             <!-- ✅ MENSAJES TAMBIÉN AQUÍ -->
             @if(session('error'))
                 
-<div class="error-box">
-    {{ session('error') }}
+            <div class="error-box">
+            {{ session('error') }}
 </div>
 
             @endif
@@ -98,9 +98,24 @@
             <form method="POST" action="/register">
                 @csrf
 
-                <input type="text" name="usuario" placeholder="Ingrese su nombre" required>
-                <input type="email" name="correo" placeholder="Ingrese un correo electrónico" required>
-                <input type="password" name="password" placeholder="Ingrese una contraseña" required>
+                @error('usuario')
+                   <small style="color:red">{{ $message }}</small>
+                @enderror
+
+                <input type="text" name="usuario" placeholder="Ingrese su nombre" required  value="{{ old('usuario') }}">
+                
+                @error('correo')
+                    <small style="color:red">{{ $message }}</small>
+                @enderror
+
+                <input type="email" name="correo" placeholder="Ingrese un correo electrónico" required value="{{ old('correo') }}">
+
+                 @error('password')
+                  <small style="color:red">{{ $message }}</small>
+                @enderror
+
+                <input type="password" name="password" placeholder="Ingrese una contraseña" required minlength="6">
+               
 
                 <button type="submit">Registrarse</button>
             </form>
