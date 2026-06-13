@@ -12,14 +12,3 @@
         "Noto Color Emoji";
 }
 
-.enlace-menu {
-    @apply hover:text-zinc-300 transition-colors;
-}
-
-.tarjetas-inicio {
-    @apply bg-zinc-800 p-8 rounded-lg shadow-lg flex flex-col items-center justify-center border border-zinc-600;
-}
-
-.tarjetas-links {
-    @apply mt-6 bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors;
-}

@@ -12,7 +12,7 @@ use App\Http\Controllers\DetalleEvaluacionController;
 use App\Http\Controllers\AutoevaluacionController;
 use App\Http\Controllers\MetricaController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ReporteController;
 
 /* =========================
    RUTA PRINCIPAL
@@ -130,3 +130,9 @@ Route::post('/metricas', [MetricaController::class,'store']);
 Route::get('/metricas/{id}/edit', [MetricaController::class,'edit']);
 Route::put('/metricas/{id}', [MetricaController::class,'update']);
 Route::delete('/metricas/{id}', [MetricaController::class,'destroy']);
+
+/* ===== REPORTES ===== */
+Route::get('/reportes/evaluaciones', [ReporteController::class,'evaluaciones']);
+Route::get('/reportes/ranking', [ReporteController::class,'ranking']);
+Route::get('/reportes/promedio', [ReporteController::class,'promedio']);
+
