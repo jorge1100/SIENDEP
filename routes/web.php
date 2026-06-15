@@ -132,6 +132,7 @@ Route::put('/metricas/{id}', [MetricaController::class,'update']);
 Route::delete('/metricas/{id}', [MetricaController::class,'destroy']);
 
 /* ===== REPORTES ===== */
+Route::get('/reportes', [ReporteController::class, 'index']);
 Route::get('/reportes/evaluaciones', [ReporteController::class,'evaluaciones']);
 Route::get('/reportes/ranking', [ReporteController::class,'ranking']);
 Route::get('/reportes/promedio', [ReporteController::class,'promedio']);

@@ -106,6 +106,46 @@
                     Métricas
                 </a>
 
+                <div class="relative group">
+    <a href="{{ url('/reportes') }}"
+   class="flex flex-col items-center gap-1 hover:text-zinc-50 transition-colors">
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke-width="1.5"
+         stroke="currentColor"
+         class="size-6">
+
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3v18h18M7 14l3-3 3 2 4-5" />
+    </svg>
+
+    Reportes
+
+</a>
+
+    <div class="absolute left-0 z-50 hidden mt-2 w-56 rounded-lg border border-gray-700 bg-gray-900 shadow-lg group-hover:block">
+
+        <a href="{{ url('/reportes/evaluaciones') }}"
+           class="block px-4 py-3 text-sm text-gray-200 hover:bg-gray-700">
+            Reporte de Evaluaciones
+        </a>
+
+        <a href="{{ url('/reportes/ranking') }}"
+           class="block px-4 py-3 text-sm text-gray-200 hover:bg-gray-700">
+            Ranking de Empleados
+        </a>
+
+        <a href="{{ url('/reportes/promedio') }}"
+           class="block px-4 py-3 text-sm text-gray-200 hover:bg-gray-700">
+            Promedio por Empleado
+        </a>
+
+    </div>
+</div>
+
             </div>
             @if (session()->has('id_usuario'))
                 <div
