@@ -13,21 +13,43 @@
 </head>
 
 <body>
+    
 
+<!-- 🔥 PANTALLA DE CARGA -->
 
-{{-- ✅ MENSAJE TOAST --}}
-@if(session('error'))
-    <div class="error-toast">
-        {{ session('error') }}
+<div id="splash">
+    <div class="splash-content">
+
+        <div class="logo-icon">
+            
+<svg viewBox="0 0 64 64" width="70" height="70" fill="none" stroke="#3b82f6" stroke-width="2">
+
+    <!-- Documento -->
+    <rect x="10" y="8" width="28" height="40" rx="6"></rect>
+
+    <!-- Check -->
+    <path d="M16 28 l6 6 l10 -12" />
+
+    <!-- Barras -->
+    <rect x="42" y="30" width="4" height="12" fill="#3b82f6"></rect>
+    <rect x="48" y="24" width="4" height="18" fill="#3b82f6"></rect>
+    <rect x="54" y="18" width="4" height="24" fill="#3b82f6"></rect>
+
+</svg>
+
+        </div>
+
+        <h1>SIENDEP</h1>
+        <p>Sistema Integral de Evaluación de Desempeño Para Empresas Privadas</p>
+
+        <div class="loader">
+            <div class="loader-bar"></div>
+        </div>
+
+        <span class="loading-text">Cargando...</span>
+
     </div>
-@endif
-
-@if(session('ok'))
-    <div class="ok-toast">
-        {{ session('ok') }}
-    </div>
-@endif
-
+</div>
 
 <div class="auth-container">
 
@@ -53,25 +75,59 @@
 
             <!-- ✅ MENSAJES DENTRO DEL CARD -->
            
-            <form method="POST" action="/login">
-                @csrf
+           <form method="POST" action="/login">
+    @csrf
 
-                <input
-                    type="text"
-                    name="usuario"
-                    placeholder="Usuario"
-                    required
-                >
+    {{-- ✅ ERROR LOGIN --}}
+            @if(session('error'))  
+             <div class="error-box">
+             {{ session('error') }}
+             </div>
+            @endif
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    required
-                >
+    {{-- ✅ USUARIO --}}
+    <div class="input-group">
+        <input
+            type="text"
+            name="usuario"
+            placeholder="Usuario"
+            required
+        >
+    </div>
 
-                <button type="submit">Ingresar</button>
-            </form>
+    {{-- ✅ PASSWORD + OJITO --}}
+    <div class="input-group">
+        <input
+            type="password"
+            name="password"
+            id="password-login"
+            placeholder="Contraseña"
+            required
+        >
+        
+        
+<span class="toggle-password" onclick="togglePassword('password-login', this)">
+        <!-- 👁 OJO ABIERTO -->
+        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <!-- 👁‍🗨 OJO CERRADO -->
+        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.06-7.06"/>
+            <path d="M22.54 16.88A21.77 21.77 0 0 0 23 12s-4-8-11-8a10.94 10.94 0 0 0-5.94 1.94"/>
+            <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+    </span>
+
+
+    </div>
+
+    {{-- ✅ BOTÓN --}}
+    <button type="submit">Ingresar</button>
+
+</form>
 
         </div>
 
@@ -82,18 +138,13 @@
 
             <h2>Crear cuenta</h2>
 
-            <!-- ✅ MENSAJES TAMBIÉN AQUÍ -->
-            @if(session('error'))
-                
-            <div class="error-box">
-            {{ session('error') }}
-</div>
-
-            @endif
-
             @if(session('ok'))
-                <p class="ok">{{ session('ok') }}</p>
-            @endif
+         <div class="ok-box">
+            Usuario creado correctamente.<br>
+             Redirigiendo al login...
+         </div>
+         @endif
+
 
             <form method="POST" action="/register">
                 @csrf
@@ -113,9 +164,37 @@
                  @error('password')
                   <small style="color:red">{{ $message }}</small>
                 @enderror
-
-                <input type="password" name="password" placeholder="Ingrese una contraseña" required minlength="6">
                
+                
+<div class="input-group">
+    <input 
+        type="password" 
+        name="password" 
+        id="password-register"
+        placeholder="Ingrese una contraseña" 
+        required 
+        minlength="6"
+    >
+    
+    
+<span class="toggle-password" onclick="togglePassword('password-register', this)">
+        <!-- 👁 OJO ABIERTO -->
+        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <!-- 👁‍🗨 OJO CERRADO -->
+        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.06-7.06"/>
+            <path d="M22.54 16.88A21.77 21.77 0 0 0 23 12s-4-8-11-8a10.94 10.94 0 0 0-5.94 1.94"/>
+            <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+    </span>
+
+
+</div>
+
 
                 <button type="submit">Registrarse</button>
             </form>
@@ -133,10 +212,11 @@
 
 <!-- ✅ AUTO OCULTAR MENSAJE -->
 
+
 <script>
  
 setTimeout(() => {
-    const alerta = document.querySelector('.error-toast, .ok-toast');
+    const alerta = document.querySelector('.error-toast');
     if (alerta) {
         alerta.style.transition = "0.5s";
         alerta.style.opacity = "0";
@@ -144,6 +224,57 @@ setTimeout(() => {
     }
 }, 3000);
 
+</script>
+
+
+@if(session('ok'))
+<script>
+    setTimeout(() => {
+        window.location.href = "/?vista=login";
+    }, 2000); // 2 segundos
+</script>
+@endif
+
+
+<script>
+function togglePassword(id, element) {
+    const input = document.getElementById(id);
+
+    const eyeOpen = element.querySelector(".eye-open");
+    const eyeClosed = element.querySelector(".eye-closed");
+
+    if (input.type === "password") {
+        input.type = "text";
+        eyeOpen.style.display = "none";
+        eyeClosed.style.display = "block";
+    } else {
+        input.type = "password";
+        eyeOpen.style.display = "block";
+        eyeClosed.style.display = "none";
+    }
+}
+</script>
+
+
+<script>
+const splash = document.getElementById("splash");
+
+// Detectar tipo de navegación
+if (performance.navigation.type === 1) {
+    // ✅ SOLO si es recarga (F5)
+
+    setTimeout(() => {
+        if (splash) {
+            splash.classList.add("hide");
+        }
+    }, 2000);
+
+} else {
+    // ❌ si no es recarga → ocultar directo
+    if (splash) {
+        splash.style.display = "none";
+    }
+}
 </script>
 
 

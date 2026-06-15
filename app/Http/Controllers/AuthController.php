@@ -14,7 +14,7 @@ class AuthController extends Controller
     
 $request->validate([
         
- 'usuario' => 'required|min:6',
+ 'usuario',
     'correo' => [
         'required',
         'email',
@@ -30,7 +30,7 @@ $request->validate([
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/')->with('ok', 'Usuario creado correctamente');
+        return redirect('/?vista=registro')->with('ok', 'Usuario creado correctamente');
     }
 
     public function login(Request $request)

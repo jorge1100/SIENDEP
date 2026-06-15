@@ -6,28 +6,34 @@ html,
 body {
     margin: 0;
     padding: 0;
-
     min-height: 100%;
 }
 
 body {
-    position: relative;
-
     display: flex;
     flex-direction: column;
+    position: relative;
 }
+
+/* FONDO DIFUMINADO */
 
 body::before {
     content: "";
-
     position: fixed;
     inset: 0;
 
-    background-image: url("https://images.unsplash.com/photo-1511512578047-dfb367046420");
-    background-size: cover;
-    background-position: center;
-
-    filter: blur(8px); /* 🔥 DIFUMINADO REAL */
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(59, 130, 246, 0.2),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(30, 64, 175, 0.2),
+            transparent 40%
+        ),
+        linear-gradient(135deg, #02182e, #0b2c4d);
 
     z-index: -1;
 }
@@ -39,12 +45,12 @@ body::before {
 .auth-container {
     min-height: 100vh;
     flex: 1;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    /* 🔥 OSCURECE SIN TAPAR */
     background: rgba(0, 0, 0, 0.35);
 }
 
@@ -63,33 +69,75 @@ body::before {
     color: #aaa;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+
+    position: relative;
+
+    transition: all 0.3s ease;
 }
 
 .tab-btn.active {
-    color: #f97316;
+    color: #3b82f6;
+
+    text-shadow:
+        0 0 5px #3b82f6,
+        0 0 10px #3b82f6;
 }
 
 .tab-btn:hover {
-    color: #ea580c;
+    color: #3b82f6;
+
+    text-shadow:
+        0 0 8px #3b82f6,
+        0 0 15px #3b82f6,
+        0 0 25px rgba(59, 130, 246, 0.9);
+}
+
+.tab-btn::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #3b82f6;
+
+    box-shadow: 0 0 10px #3b82f6;
+
+    transition: width 0.3s ease;
+}
+
+.tab-btn:hover::after {
+    width: 100%;
+}
+
+.tab-btn.active::after {
+    width: 100%;
 }
 
 /* =========================
-   CARD (ESTILO CRUNCHYROLL)
+   CARD
 ========================= */
 
 .auth-card {
     width: 350px;
     padding: 25px;
 
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.4); /* 👈 más transparente */
+    backdrop-filter: blur(15px); /* 👈 blur fuerte */
+    -webkit-backdrop-filter: blur(15px);
 
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border-radius: 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(59, 130, 246, 0.15);
 }
 
-/* TITULO */
 .auth-card h2 {
     color: white;
     margin-bottom: 20px;
@@ -105,20 +153,22 @@ body::before {
     margin-bottom: 20px;
 
     border: none;
-    border-bottom: 2px solid #666;
-    background: transparent;
+    border-bottom: 2px solid #555;
 
+    background-color: transparent; /* 🔥 clave */
     color: white;
+
     font-size: 14px;
+
+    outline: none;
 }
 
 .auth-card input::placeholder {
-    color: #aaa;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .auth-card input:focus {
-    outline: none;
-    border-bottom: 2px solid #f97316;
+    border-bottom: 2px solid #3b82f6;
 }
 
 /* =========================
@@ -129,19 +179,84 @@ body::before {
     width: 100%;
     padding: 12px;
 
-    background: transparent;
-    border: 2px solid #666;
+    background: transparent; /* 🔥 clave */
+    border: 2px solid rgba(255, 255, 255, 0.3);
 
     color: #ccc;
+    font-size: 14px;
+
     border-radius: 30px;
 
     cursor: pointer;
-    transition: 0.3s;
+
+    transition: all 0.3s ease;
 }
 
 .auth-card button:hover {
-    border-color: #f97316;
+    border-color: #3b82f6;
     color: white;
+
+    background: rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+.error-box {
+    background: rgba(220, 38, 38, 0.2);
+    color: #f87171;
+
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    border: 1px solid rgba(220, 38, 38, 0.5);
+}
+
+.ok-box {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+/* =========================
+   INPUT GROUP (OJITO)
+========================= */
+
+.input-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 35%;
+    transform: translateY(-50%);
+
+    cursor: pointer;
+    color: #aaa;
+
+    transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #3b82f6;
+
+    text-shadow:
+        0 0 5px #3b82f6,
+        0 0 10px #3b82f6,
+        0 0 18px rgba(59, 130, 246, 0.8);
 }
 
 /* =========================
@@ -159,48 +274,111 @@ body::before {
 }
 
 /* =========================
-   TOAST (ERROR / OK)
+   SPLASH MODERNO (SIN IMAGEN)
 ========================= */
 
-.error-toast,
-.ok-toast {
+#splash {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    inset: 0;
 
-    padding: 12px 18px;
-    border-radius: 10px;
+    background: radial-gradient(circle at center, #0b2c4d, #02182e);
 
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     z-index: 9999;
 
-    font-weight: bold;
-    animation: slideDown 0.3s ease;
+    transition: opacity 0.8s ease;
 }
 
-/* 🔴 ERROR */
-.error-toast {
-    background: #dc2626;
-    box-shadow: 0 0 15px rgba(220, 38, 38, 0.7);
+#splash.hide {
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* ✅ OK */
-.ok-toast {
-    background: #16a34a;
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+/* CONTENIDO SPLASH */
+.splash-content {
+    text-align: center;
+    color: white;
 }
 
-/* =========================
-   ANIMACIÓN
-========================= */
+.logo-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
 
-@keyframes slideDown {
+    animation: float 2s infinite ease-in-out;
+}
+
+.splash-content h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+}
+
+.splash-content p {
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+/* LOADER */
+.loader {
+    width: 250px;
+    height: 6px;
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+.loader-bar {
+    height: 100%;
+    width: 0;
+
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+
+    animation: load 2s forwards;
+}
+
+.loading-text {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* ANIMACIONES */
+
+@keyframes load {
     from {
-        opacity: 0;
-        transform: translateY(-15px);
+        width: 0;
     }
     to {
-        opacity: 1;
+        width: 100%;
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
         transform: translateY(0);
     }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.logo-icon {
+    margin-bottom: 10px;
+
+    animation: float 2s infinite ease-in-out;
+}
+
+.logo-icon svg {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+button {
+    background: none;
+    border: none;
+    outline: none;
 }
