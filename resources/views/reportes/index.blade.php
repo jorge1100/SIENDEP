@@ -11,7 +11,7 @@
     <div class="grid md:grid-cols-3 gap-6">
 
         <a href="{{ url('/reportes/evaluaciones') }}"
-           class="bg-zinc-800 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
+           class="bg-gray-900 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
 
             <h2 class="text-xl font-semibold text-white mb-2">
                 Reporte de Evaluaciones
@@ -24,7 +24,7 @@
         </a>
 
         <a href="{{ url('/reportes/ranking') }}"
-           class="bg-zinc-800 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
+          class="bg-gray-900 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
 
             <h2 class="text-xl font-semibold text-white mb-2">
                 Ranking de Empleados
@@ -37,7 +37,7 @@
         </a>
 
         <a href="{{ url('/reportes/promedio') }}"
-           class="bg-zinc-800 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
+           class="bg-gray-900 border border-zinc-600 rounded-lg p-6 hover:bg-zinc-700 transition">
 
             <h2 class="text-xl font-semibold text-white mb-2">
                 Promedio por Empleado

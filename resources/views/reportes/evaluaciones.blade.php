@@ -8,7 +8,7 @@
 
     <div class="bg-zinc-800 rounded-lg shadow-lg border border-zinc-600 max-w-6xl mx-auto overflow-hidden">
         <table class="w-full text-left border-collapse text-zinc-200">
-            <thead class="bg-zinc-900 border-b border-zinc-600">
+            <thead class="table-header">
                 <tr>
                     <th class="tabla-encabezado">Empleado</th>
                     <th class="tabla-encabezado">Periodo</th>

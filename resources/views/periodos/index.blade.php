@@ -4,14 +4,14 @@
 
     <div class="mb-6 flex justify-between items-center max-w-6xl mx-auto">
         <h1 class="text-3xl font-bold text-white">Períodos de Evaluación</h1>
-        <a href="/periodos/create" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded shadow transition-colors">
+        <a href="/periodos/create" class="btn-primary">
             Nuevo Período
         </a>
     </div>
 
     <div class="bg-zinc-800 rounded-lg shadow-lg border border-zinc-600 max-w-6xl mx-auto overflow-hidden">
         <table class="w-full text-left border-collapse text-zinc-200">
-            <thead class="bg-zinc-900 border-b border-zinc-600">
+            <thead class="bg-gray-900 border-b border-zinc-600">
                 <tr>
                     <th class="p-4 font-semibold">ID</th>
                     <th class="p-4 font-semibold">Nombre</th>
@@ -34,14 +34,14 @@
                     </td>
                     <td class="p-4 flex justify-center gap-2">
                         
-                        <a href="/periodos/{{ $periodo->id }}/edit" class="bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                        <a href="/periodos/{{ $periodo->id }}/edit" class="btn-edit">
                             Editar
                         </a>
 
                         <form action="/periodos/{{ $periodo->id }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm transition-colors">
+                            <button type="submit" class="btn-danger">
                                 Eliminar
                             </button>
                         </form>
