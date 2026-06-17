@@ -267,7 +267,7 @@ if (performance.navigation.type === 1) {
         if (splash) {
             splash.classList.add("hide");
         }
-    }, 2000);
+    }, 4000);
 
 } else {
     // ❌ si no es recarga → ocultar directo
