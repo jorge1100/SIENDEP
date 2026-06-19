@@ -1,75 +1,74 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Métricas</h1>
+    <div class="max-w-6xl mx-auto relative">
+        
+        @if(session('success'))
+            <div class="bg-green-500/20 border border-green-500 text-green-400 p-4 rounded mb-6 shadow-lg">
+                {{ session('success') }}
+            </div>
+        @endif
 
-<a href="/metricas/create">
-    Nueva Métrica
-</a>
+        @if(session('error'))
+            <div class="bg-red-500/20 border border-red-500 text-red-400 p-4 rounded mb-6 shadow-lg">
+                {{ session('error') }}
+            </div>
+        @endif
 
-<hr>
+        <div class="mb-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-white">Métricas</h1>
+            <a href="/metricas/create" class="btn-primary">
+                Nueva Métrica
+            </a>
+        </div>
 
-<table border="1">
+        <div class="card-container">
+            <table class="w-full text-left border-collapse text-zinc-200">
+                <thead class="table-header">
+                    <tr>
+                        <th class="p-4 font-semibold">ID</th>
+                        <th class="p-4 font-semibold">Empleado</th>
+                        <th class="p-4 font-semibold">Tipo</th>
+                        <th class="p-4 font-semibold">Valor</th>
+                        <th class="p-4 font-semibold">Fecha</th>
+                        <th class="p-4 font-semibold text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-700">
+                    
+                    @foreach($metricas as $metrica)
+                    <tr class="table-row">
+                        <td class="p-4">{{ $metrica->id }}</td>
+                        <td class="p-4 font-bold text-white">
+                            {{ $metrica->empleado->nombre }} 
+                            {{ $metrica->empleado->apellido }}
+                        </td>
+                        <td class="p-4">{{ $metrica->tipo }}</td>
+                        <td class="p-4 font-bold text-blue-400">{{ $metrica->valor }}</td>
+                        <td class="p-4">{{ $metrica->fecha }}</td>
+                        <td class="p-4 flex justify-center gap-2">
+                            
+                            <a href="/metricas/{{ $metrica->id }}/edit" class="btn-edit">
+                                Editar
+                            </a>
 
-<tr>
-    <th>ID</th>
-    <th>Empleado</th>
-    <th>Tipo</th>
-    <th>Valor</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-</tr>
+                            <button type="button" onclick="abrirModalConfirmacion('form-delete-{{ $metrica->id }}')" class="btn-danger">
+                                Eliminar
+                            </button>
 
-@foreach($metricas as $metrica)
+                            <form id="form-delete-{{ $metrica->id }}" action="/metricas/{{ $metrica->id }}" method="POST" style="display:none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
 
-<tr>
+                        </td>
+                    </tr>
+                    @endforeach
 
-    <td>{{ $metrica->id }}</td>
-
-    <td>
-        {{ $metrica->empleado->nombre }}
-        {{ $metrica->empleado->apellido }}
-    </td>
-
-    <td>{{ $metrica->tipo }}</td>
-
-    <td>{{ $metrica->valor }}</td>
-
-    <td>{{ $metrica->fecha }}</td>
-
-    <td>
-
-        <a href="/metricas/{{ $metrica->id }}/edit">
-            Editar
-        </a>
-
-        |
-
-        <form
-            action="/metricas/{{ $metrica->id }}"
-            method="POST"
-            style="display:inline;"
-        >
-
-            @csrf
-            @method('DELETE')
-
-            <button
-                type="submit"
-                onclick="return confirm('¿Desea eliminar esta métrica?')"
-            >
-                Eliminar
-            </button>
-
-        </form>
-
-    </td>
-
-</tr>
-
-@endforeach
-
-</table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 @endsection

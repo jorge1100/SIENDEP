@@ -1,63 +1,48 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('contenido')
+@section('title', 'Departamentos - SIENDEP')
 
-<h1>Departamentos</h1>
+@section('content')
 
-<a href="/departamentos/create">
-    Nuevo Departamento
-</a>
+    <div class="max-w-6xl mx-auto relative">
 
-<br><br>
-
-<table>
-
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Acciones</th>
-    </tr>
-
-    @foreach($departamentos as $departamento)
-
-    <tr>
-
-        <td>{{ $departamento->id }}</td>
-
-        <td>{{ $departamento->nombre }}</td>
-
-        <td>{{ $departamento->descripcion }}</td>
-
-        <td>
-
-            <a href="/departamentos/{{ $departamento->id }}/edit">
-                Editar
+        <div class="mb-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-white">Departamentos</h1>
+            <a href="/departamentos/create" class="btn-primary">
+                + Nuevo Departamento
             </a>
+        </div>
 
-            |
+        <div class="card-container">
+            <table class="w-full text-left border-collapse text-gray-200">
+                <thead class="table-header">
+                    <tr>
+                        <th class="p-4 font-semibold">ID</th>
+                        <th class="p-4 font-semibold">Nombre</th>
+                        <th class="p-4 font-semibold">Descripción</th>
+                        <th class="p-4 font-semibold text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
 
-            <form
-                action="/departamentos/{{ $departamento->id }}"
-                method="POST"
-                style="display:inline;"
-            >
+                    @foreach ($departamentos as $departamento)
+                        <tr class="table-row">
+                            <td class="p-4">{{ $departamento->id }}</td>
+                            <td class="p-4 font-bold text-white">{{ $departamento->nombre }}</td>
+                            <td class="p-4 text-sm">{{ $departamento->descripcion }}</td>
+                            <td class="p-4 flex justify-center gap-2">
 
-                @csrf
-                @method('DELETE')
+                                <a href="/departamentos/{{ $departamento->id }}/edit" class="btn-edit">
+                                    Editar
+                                </a>
 
-                <button type="submit">
-                    Eliminar
-                </button>
+                            </td>
+                        </tr>
+                    @endforeach
 
-            </form>
-
-        </td>
-
-    </tr>
-
-    @endforeach
-
-</table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 @endsection

@@ -17,7 +17,8 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
             $table->foreignId('departamento_id')
-                ->constrained();
+                ->constrained()
+                ->restrictOnDelete();
             $table->string('dni', 20)->unique();
             $table->string('nombre');
             $table->string('apellido');

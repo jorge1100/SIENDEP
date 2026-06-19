@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
 {
+
+public function index()
+{
+    return view('reportes.index');
+}
+
     public function evaluaciones()
     {
         $evaluaciones = Evaluacion::with(

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('metricas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('empleado_id')
-                ->constrained();
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('tipo');
             $table->decimal('valor', 10, 2);
             $table->date('fecha');

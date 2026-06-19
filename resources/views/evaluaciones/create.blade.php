@@ -1,81 +1,67 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Nueva Evaluación</h1>
+    <div class="max-w-2xl mx-auto">
+        <div class="mb-6 flex items-center gap-4">
+            <a href="/evaluaciones" class="text-zinc-400 hover:text-white transition-colors">&larr; Volver</a>
+            <h1 class="text-3xl font-bold text-white">Nueva Evaluación</h1>
+        </div>
 
-<form method="POST" action="/evaluaciones">
+        <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-zinc-600">
+            <form method="POST" action="/evaluaciones" class="flex flex-col gap-5">
+                @csrf
 
-@csrf
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Empleado</label>
+                    <select name="empleado_id" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>-- Seleccione un empleado --</option>
+                        @foreach($empleados as $empleado)
+                            <option value="{{ $empleado->id }}">
+                                {{ $empleado->nombre }} {{ $empleado->apellido }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-<label>Empleado</label>
-<select name="empleado_id">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Período</label>
+                    <select name="periodo_evaluacion_id" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>-- Seleccione un periodo --</option>
+                        @foreach($periodos as $periodo)
+                            <option value="{{ $periodo->id }}">
+                                {{ $periodo->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-@foreach($empleados as $empleado)
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Puntaje</label>
+                    <input type="number" step="0.01" name="puntaje_total" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
 
-<option value="{{ $empleado->id }}">
-{{ $empleado->nombre }}
-{{ $empleado->apellido }}
-</option>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Observaciones</label>
+                    <textarea name="observaciones" rows="4" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors"></textarea>
+                </div>
 
-@endforeach
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Estado</label>
+                    <select name="estado" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="borrador">Borrador</option>
+                        <option value="finalizada">Finalizada</option>
+                    </select>
+                </div>
 
-</select>
+                <div class="mt-4 flex justify-end">
+                    <button type="submit" class="btn-save">
+                        Guardar
+                    </button>
+                </div>
 
-<br><br>
-
-<label>Período</label>
-
-<select name="periodo_evaluacion_id">
-
-@foreach($periodos as $periodo)
-
-<option value="{{ $periodo->id }}">
-{{ $periodo->nombre }}
-</option>
-
-@endforeach
-
-</select>
-
-<br><br>
-
-<label>Puntaje</label>
-
-<input
-type="number"
-step="0.01"
-name="puntaje_total"
->
-
-<br><br>
-
-<label>Observaciones</label>
-
-<textarea name="observaciones"></textarea>
-
-<br><br>
-
-<label>Estado</label>
-
-<select name="estado">
-
-<option value="borrador">
-Borrador
-</option>
-
-<option value="finalizada">
-Finalizada
-</option>
-
-</select>
-
-<br><br>
-
-<button type="submit">
-Guardar
-</button>
-
-</form>
+            </form>
+        </div>
+    </div>
 
 @endsection

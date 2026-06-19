@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('detalle_evaluacions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evaluacion_id')
-                ->constrained();
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('criterio_id')
-                ->constrained();
+                ->constrained()
+                ->restrictOnDelete();
             $table->decimal('calificacion', 5, 2);
             $table->text('comentario')
                 ->nullable();

@@ -1,65 +1,59 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('contenido')
+@section('content')
 
-<h1>Nuevo Detalle de Evaluación</h1>
+    <div class="max-w-2xl mx-auto">
+        <div class="mb-6 flex items-center gap-4">
+            <a href="/detalle-evaluaciones" class="text-gray-400 hover:text-white transition-colors">&larr; Volver</a>
+            <h1 class="text-3xl font-bold text-white">Nuevo Detalle de Evaluación</h1>
+        </div>
 
-<form method="POST" action="/detalle-evaluaciones">
+        <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700">
+            <form method="POST" action="/detalle-evaluaciones" class="flex flex-col gap-5">
+                @csrf
 
-@csrf
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Evaluación</label>
+                    <select name="evaluacion_id" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>-- Seleccione una evaluación --</option>
+                        @foreach($evaluaciones as $evaluacion)
+                            <option value="{{ $evaluacion->id }}">
+                                Evaluación #{{ $evaluacion->id }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-<label>Evaluación</label>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Criterio</label>
+                    <select name="criterio_id" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>-- Seleccione un criterio --</option>
+                        @foreach($criterios as $criterio)
+                            <option value="{{ $criterio->id }}">
+                                {{ $criterio->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-<select name="evaluacion_id">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Calificación</label>
+                    <input type="number" step="0.01" name="calificacion" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
 
-@foreach($evaluaciones as $evaluacion)
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Comentario</label>
+                    <textarea name="comentario" rows="4" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors"></textarea>
+                </div>
 
-<option value="{{ $evaluacion->id }}">
-Evaluación #{{ $evaluacion->id }}
-</option>
+                <div class="mt-4 flex justify-end">
+                    <button type="submit" class="btn-save">
+                        Guardar
+                    </button>
+                </div>
 
-@endforeach
-
-</select>
-
-<br><br>
-
-<label>Criterio</label>
-
-<select name="criterio_id">
-
-@foreach($criterios as $criterio)
-
-<option value="{{ $criterio->id }}">
-{{ $criterio->nombre }}
-</option>
-
-@endforeach
-
-</select>
-
-<br><br>
-
-<label>Calificación</label>
-
-<input
-type="number"
-step="0.01"
-name="calificacion"
->
-
-<br><br>
-
-<label>Comentario</label>
-
-<textarea name="comentario"></textarea>
-
-<br><br>
-
-<button type="submit">
-Guardar
-</button>
-
-</form>
+            </form>
+        </div>
+    </div>
 
 @endsection

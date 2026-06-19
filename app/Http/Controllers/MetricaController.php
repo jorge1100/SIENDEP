@@ -11,21 +11,13 @@ class MetricaController extends Controller
     public function index()
     {
         $metricas = Metrica::with('empleado')->get();
-
-        return view(
-            'metricas.index',
-            compact('metricas')
-        );
+        return view('metricas.index', compact('metricas'));
     }
 
     public function create()
     {
         $empleados = Empleado::all();
-
-        return view(
-            'metricas.create',
-            compact('empleados')
-        );
+        return view('metricas.create', compact('empleados'));
     }
 
     public function store(Request $request)
@@ -36,43 +28,32 @@ class MetricaController extends Controller
             'valor' => $request->valor,
             'fecha' => $request->fecha
         ]);
-
-        return redirect('/metricas');
+        return redirect('/metricas')->with('success', 'Métrica registrada exitosamente.');
     }
 
     public function edit($id)
     {
         $metrica = Metrica::findOrFail($id);
-
         $empleados = Empleado::all();
-
-        return view(
-            'metricas.edit',
-            compact(
-                'metrica',
-                'empleados'
-            )
-        );
+        return view('metricas.edit', compact('metrica', 'empleados'));
     }
 
     public function update(Request $request, $id)
     {
         $metrica = Metrica::findOrFail($id);
-
         $metrica->update([
             'empleado_id' => $request->empleado_id,
             'tipo' => $request->tipo,
             'valor' => $request->valor,
             'fecha' => $request->fecha
         ]);
-
-        return redirect('/metricas');
+        return redirect('/metricas')->with('success', 'Métrica actualizada.');
     }
 
     public function destroy($id)
     {
         $metrica = Metrica::findOrFail($id);
         $metrica->delete();
-        return redirect('/metricas');
+        return redirect('/metricas')->with('success', 'Métrica eliminada del sistema.');
     }
 }
