@@ -15,7 +15,7 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Empleado</label>
-                    <select name="empleado_id" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <select name="empleado_id" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                         @foreach($empleados as $empleado)
                             <option value="{{ $empleado->id }}" {{ $metrica->empleado_id == $empleado->id ? 'selected' : '' }}>
                                 {{ $empleado->nombre }} {{ $empleado->apellido }}
@@ -26,21 +26,21 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Tipo</label>
-                    <input type="text" name="tipo" value="{{ $metrica->tipo }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="text" name="tipo" value="{{ $metrica->tipo }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Valor</label>
-                    <input type="number" step="0.01" name="valor" value="{{ $metrica->valor }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="number" step="0.01" name="valor" value="{{ $metrica->valor }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha</label>
-                    <input type="date" name="fecha" value="{{ $metrica->fecha }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="date" name="fecha" value="{{ $metrica->fecha }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div class="mt-4 flex justify-end">
-                    <button type="submit" class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded transition-colors shadow">
+                    <button type="submit" class="btn-update">
                         Actualizar
                     </button>
                 </div>

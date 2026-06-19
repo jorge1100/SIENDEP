@@ -15,7 +15,7 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Evaluación</label>
-                    <select name="evaluacion_id" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <select name="evaluacion_id" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                         @foreach($evaluaciones as $evaluacion)
                             <option value="{{ $evaluacion->id }}" {{ $detalle->evaluacion_id == $evaluacion->id ? 'selected' : '' }}>
                                 Evaluación #{{ $evaluacion->id }}
@@ -26,7 +26,7 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Criterio</label>
-                    <select name="criterio_id" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <select name="criterio_id" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                         @foreach($criterios as $criterio)
                             <option value="{{ $criterio->id }}" {{ $detalle->criterio_id == $criterio->id ? 'selected' : '' }}>
                                 {{ $criterio->nombre }}
@@ -37,16 +37,16 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Calificación</label>
-                    <input type="number" step="0.01" name="calificacion" value="{{ $detalle->calificacion }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="number" step="0.01" name="calificacion" value="{{ $detalle->calificacion }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Comentario</label>
-                    <textarea name="comentario" rows="4" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">{{ $detalle->comentario }}</textarea>
+                    <textarea name="comentario" rows="4" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">{{ $detalle->comentario }}</textarea>
                 </div>
 
                 <div class="mt-4 flex justify-end">
-                    <button type="submit" class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded transition-colors shadow">
+                    <button type="submit" class="btn-update">
                         Actualizar
                     </button>
                 </div>

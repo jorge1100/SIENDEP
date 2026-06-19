@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="max-w-2xl mx-auto">
-        <div class="mb-6">
+        <div class="mb-6 flex items-center gap-4">
+            <a href="/empleados" class="text-zinc-400 hover:text-white transition-colors">&larr; Volver</a>
             <h1 class="text-3xl font-bold text-white">Editar Empleado</h1>
         </div>
 
@@ -12,21 +13,22 @@
                 @csrf
                 @method('PUT')
 
-                <input type="text" name="dni" value="{{ $empleado->dni }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="dni" value="{{ $empleado->dni }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="text" name="nombre" value="{{ $empleado->nombre }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="nombre" value="{{ $empleado->nombre }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="text" name="apellido" value="{{ $empleado->apellido }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="apellido" value="{{ $empleado->apellido }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="text" name="telefono" value="{{ $empleado->telefono }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="telefono" value="{{ $empleado->telefono }}" placeholder="Teléfono (Opcional)" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="text" name="direccion" value="{{ $empleado->direccion }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="direccion" value="{{ $empleado->direccion }}" placeholder="Dirección (Opcional)" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="text" name="cargo" value="{{ $empleado->cargo }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="text" name="cargo" value="{{ $empleado->cargo }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <input type="date" name="fecha_ingreso" value="{{ $empleado->fecha_ingreso }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <input type="date" name="fecha_ingreso" value="{{ $empleado->fecha_ingreso }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
 
-                <select name="departamento_id" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <select name="departamento_id" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <option value="" disabled>-- Seleccione un departamento --</option>
                     @foreach($departamentos as $departamento)
                         <option value="{{ $departamento->id }}" {{ $empleado->departamento_id == $departamento->id ? 'selected' : '' }}>
                             {{ $departamento->nombre }}
@@ -34,8 +36,8 @@
                     @endforeach
                 </select>
 
-                <div class="mt-2">
-                    <button type="submit" class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded transition-colors shadow">
+                <div class="mt-2 flex justify-end">
+                    <button type="submit" class="btn-update">
                         Actualizar
                     </button>
                 </div>

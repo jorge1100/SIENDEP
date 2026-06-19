@@ -15,17 +15,17 @@
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Nombre</label>
-                    <input type="text" name="nombre" value="{{ $periodo->nombre }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="text" name="nombre" value="{{ $periodo->nombre }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Inicio</label>
-                    <input type="date" name="fecha_inicio" value="{{ $periodo->fecha_inicio }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="date" name="fecha_inicio" value="{{ $periodo->fecha_inicio }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Fin</label>
-                    <input type="date" name="fecha_fin" value="{{ $periodo->fecha_fin }}" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="date" name="fecha_fin" value="{{ $periodo->fecha_fin }}" required class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div class="flex items-center gap-2 mt-2">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mt-4 flex justify-end">
-                    <button type="submit" class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded transition-colors shadow">
+                    <button type="submit" class="btn-update">
                         Actualizar
                     </button>
                 </div>

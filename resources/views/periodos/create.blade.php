@@ -8,32 +8,33 @@
             <h1 class="text-3xl font-bold text-white">Nuevo Período</h1>
         </div>
 
-        <div class="bg-zinc-800 p-8 rounded-lg shadow-lg border border-zinc-600">
+        <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-zinc-600">
             <form method="POST" action="/periodos" class="flex flex-col gap-5">
                 @csrf
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Nombre</label>
-                    <input type="text" name="nombre" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="text" name="nombre" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Inicio</label>
-                    <input type="date" name="fecha_inicio" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="date" name="fecha_inicio" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-zinc-300 mb-2">Fecha Fin</label>
-                    <input type="date" name="fecha_fin" class="w-full bg-zinc-900 border border-zinc-600 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    <input type="date" name="fecha_fin" required class="w-full bg-gray-700 border border-gray-800 rounded p-3 text-zinc-400 focus:text-white focus:outline-none focus:border-blue-500 transition-colors">
                 </div>
 
                 <div class="flex items-center gap-2 mt-2">
-                    <input type="checkbox" name="activo" value="1" class="w-5 h-5 accent-blue-600 bg-zinc-900 border-zinc-600 rounded focus:ring-blue-500">
+                    <!-- El checkbox no necesita "required" porque es un valor booleano -->
+                    <input type="checkbox" name="activo" value="1" class="w-5 h-5 accent-blue-600 bg-gray-700 border border-gray-800 rounded focus:ring-blue-500">
                     <label class="text-sm font-medium text-zinc-300">Activo</label>
                 </div>
 
                 <div class="mt-4 flex justify-end">
-                    <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded transition-colors shadow">
+                    <button type="submit" class="btn-save">
                         Guardar
                     </button>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Criterio;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CriterioController extends Controller
 {
@@ -30,7 +31,7 @@ class CriterioController extends Controller
             'ponderacion' => $request->ponderacion
         ]);
 
-        return redirect('/criterios');
+        return redirect('/criterios')->with('success', 'Criterio creado exitosamente.');
     }
 
     public function edit($id)
@@ -53,13 +54,22 @@ class CriterioController extends Controller
             'ponderacion' => $request->ponderacion
         ]);
 
-        return redirect('/criterios');
+        return redirect('/criterios')->with('success', 'Criterio actualizado correctamente.');
     }
 
     public function destroy($id)
     {
-        Criterio::findOrFail($id)->delete();
+        try {
+            $criterio = Criterio::findOrFail($id);
+            $criterio->delete();
 
-        return redirect('/criterios');
+            return redirect('/criterios')->with('success', 'Criterio eliminado con éxito.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                return redirect('/criterios')->with('error', 'No puedes eliminar este criterio porque ya está siendo utilizado en detalles de evaluaciones registradas.');
+            }
+
+            return redirect('/criterios')->with('error', 'Ocurrió un error inesperado al intentar eliminar el criterio.');
+        }
     }
 }

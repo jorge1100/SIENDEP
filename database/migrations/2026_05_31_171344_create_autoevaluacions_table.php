@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('autoevaluacions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('empleado_id')
-                ->constrained();
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('periodo_evaluacion_id')
-                ->constrained('periodo_evaluacions');
+                ->constrained('periodo_evaluacions')
+                ->restrictOnDelete();
             $table->text('comentarios');
             $table->decimal('puntaje_total', 5, 2);
             $table->timestamps();

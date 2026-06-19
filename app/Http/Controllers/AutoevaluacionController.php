@@ -45,7 +45,7 @@ class AutoevaluacionController extends Controller
             'puntaje_total' => $request->puntaje_total
         ]);
 
-        return redirect('/autoevaluaciones');
+        return redirect('/autoevaluaciones')->with('success', 'Autoevaluación registrada con éxito.');
     }
 
     public function edit($id)
@@ -76,13 +76,14 @@ class AutoevaluacionController extends Controller
             'puntaje_total' => $request->puntaje_total
         ]);
 
-        return redirect('/autoevaluaciones');
+        return redirect('/autoevaluaciones')->with('success', 'Autoevaluación actualizada correctamente.');
     }
 
     public function destroy($id)
     {
         $autoevaluacion = Autoevaluacion::findOrFail($id);
         $autoevaluacion->delete();
-        return redirect('/autoevaluaciones');
+        
+        return redirect('/autoevaluaciones')->with('success', 'Autoevaluación eliminada del sistema.');
     }
 }
