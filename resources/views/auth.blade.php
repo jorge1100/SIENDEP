@@ -167,36 +167,52 @@
                
                 
 <div class="input-group">
-    <input 
-        type="password" 
-        name="password" 
-        id="password-register"
-        placeholder="Ingrese una contraseña" 
-        required 
-        minlength="6"
-    >
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password-register"
+                        placeholder="Ingrese una contraseña" 
+                        required 
+                        minlength="6"
+                    >
+                    <span class="toggle-password" onclick="togglePassword('password-register', this)">
+                        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.06-7.06"/>
+                            <path d="M22.54 16.88A21.77 21.77 0 0 0 23 12s-4-8-11-8a10.94 10.94 0 0 0-5.94 1.94"/>
+                            <line x1="1" y1="1" x2="23" y2="23"/>
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        name="password_confirmation" 
+                        id="password-register-confirm"
+                        placeholder="Confirme la contraseña" 
+                        required 
+                        minlength="6"
+                    >
+                    <span class="toggle-password" onclick="togglePassword('password-register-confirm', this)">
+                        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+                            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.06-7.06"/>
+                            <path d="M22.54 16.88A21.77 21.77 0 0 0 23 12s-4-8-11-8a10.94 10.94 0 0 0-5.94 1.94"/>
+                            <line x1="1" y1="1" x2="23" y2="23"/>
+                        </svg>
+                    </span>
+                </div>
+
+<small id="password-match-msg" style="display: none; margin-bottom: 10px; font-weight: bold;"></small>
     
-    
-<span class="toggle-password" onclick="togglePassword('password-register', this)">
-        <!-- 👁 OJO ABIERTO -->
-        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
-            <circle cx="12" cy="12" r="3"/>
-        </svg>
-
-        <!-- 👁‍🗨 OJO CERRADO -->
-        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
-            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.06-7.06"/>
-            <path d="M22.54 16.88A21.77 21.77 0 0 0 23 12s-4-8-11-8a10.94 10.94 0 0 0-5.94 1.94"/>
-            <line x1="1" y1="1" x2="23" y2="23"/>
-        </svg>
-    </span>
-
-
-</div>
-
-
-                <button type="submit">Registrarse</button>
+    <button type="submit" id="btn-register">Registrarse</button>
             </form>
 
         </div>
@@ -210,7 +226,7 @@
     <p>© 2026 SIENDEP — Sistema de Evaluación</p>
 </footer>
 
-<!-- ✅ AUTO OCULTAR MENSAJE -->
+
 
 
 <script>
@@ -231,7 +247,7 @@ setTimeout(() => {
 <script>
     setTimeout(() => {
         window.location.href = "/?vista=login";
-    }, 2000); // 2 segundos
+    }, 2000); 
 </script>
 @endif
 
@@ -259,9 +275,9 @@ function togglePassword(id, element) {
 <script>
 const splash = document.getElementById("splash");
 
-// Detectar tipo de navegación
+
 if (performance.navigation.type === 1) {
-    // ✅ SOLO si es recarga (F5)
+
 
     setTimeout(() => {
         if (splash) {
@@ -270,13 +286,21 @@ if (performance.navigation.type === 1) {
     }, 4000);
 
 } else {
-    // ❌ si no es recarga → ocultar directo
+
     if (splash) {
         splash.style.display = "none";
     }
 }
 </script>
+<x-password-validator 
+    passwordId="password-register" 
+    confirmId="password-register-confirm" 
+    msgId="password-match-msg" 
+    btnId="btn-register" 
+/>
 
+</body>
+</html>
 
 </body>
 </html>
