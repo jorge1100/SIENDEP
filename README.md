@@ -97,7 +97,9 @@ La información debe almacenarse de forma segura.
 
 En conclusión, el sistema de notas propuesto brinda una solución sencilla y eficiente para la gestión de información personal, incorporando funcionalidades básicas y escalables, lo cual permite futuras mejoras según las necesidades del usuario.
 
+
 # Instalación de proyecto siendep
+
 
 Descargar un Proyecto Laravel desde GitHub y Ejecutarlo en XAMPP (PHP 8.5 + MariaDB).
 
