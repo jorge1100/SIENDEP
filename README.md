@@ -299,7 +299,7 @@ O para desarrollo:
 
 npm run dev
 
-14. Ejecutar el Proyecto
+## 14. Ejecutar el Proyecto
 
 Método recomendado para pruebas:
 
@@ -315,7 +315,7 @@ Abrir:
 
 http://127.0.0.1:8000
 
-15. Ejecutar Directamente con Apache de XAMPP
+## 15. Ejecutar Directamente con Apache de XAMPP
 
 Mover el proyecto a:
 
@@ -325,7 +325,7 @@ Abrir:
 
 http://localhost/proyecto/public
 
-16. Reiniciar Apache
+## 16. Reiniciar Apache
 
 Desde XAMPP:
 
